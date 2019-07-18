@@ -7,8 +7,9 @@ $bg:lightgray;
     justify-content: center;
 }
 @mixin active {
-    transform: scale(1.1);
-    transition: 0.6s
+    background: gold;
+    transform: scale(1.05);
+    transition: 1s
 }
 div{
     @extend .block;
@@ -16,6 +17,5 @@ div{
     &:hover{
         @include active;
         cursor: pointer;
-
     }
 }
