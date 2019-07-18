@@ -1,0 +1,21 @@
+$bg:lightgray;
+.block{
+    height: 100px;
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+@mixin active {
+    transform: scale(1.1);
+    transition: 0.6s
+}
+div{
+    @extend .block;
+    background: $bg;
+    &:hover{
+        @include active;
+        cursor: pointer;
+
+    }
+}
