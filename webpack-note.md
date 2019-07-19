@@ -1,4 +1,4 @@
-# webpack
+# webpack-demo
 ## 搭建步骤
 ### 1. 本地安装webpack  
 >`npm install --save-dev webpack`  
