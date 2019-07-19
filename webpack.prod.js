@@ -59,15 +59,26 @@ module.exports = {
                         }
                     }
                 ]
+            },
+            {
+                test: /\.(png|svg|jpg|gif)$/,
+                use: [
+                    {
+                        loader:'file-loader',
+                        options: {
+                            outputPath: path.resolve(__dirname,'dist/images'),
+                        },
+                    }
+                ]
             }
         ]
     },
     plugins: [
-        new MiniCssExtractPlugin({
+        new MiniCssExtractPlugin({      //  抽离css
             filename: '[name].[hash].css',
             chunkFilename: '[id].[hash].css',
         }),
-        new HtmlWebpackPlugin({  // Also generate a test.html
+        new HtmlWebpackPlugin({  // css, js 自动注入html
             title:'webpack-demo',
             filename: 'index.html',
             template: path.resolve(__dirname,'src/index.html'),
@@ -77,12 +88,12 @@ module.exports = {
                 removeAttributeQuotes:true 
             }
         }),
-        new CleanWebpackPlugin()
+        new CleanWebpackPlugin()        // 清除构建目录
     ],
     optimization:{
         minimizer:[
-            new OptimizeCssAssetsPlugin({}),
-            new UglifyJsPlugin({
+            new OptimizeCssAssetsPlugin({}),    // 压缩css
+            new UglifyJsPlugin({                // 压缩js
                 cache: true,
                 parallel:true,
                 sourceMap:false

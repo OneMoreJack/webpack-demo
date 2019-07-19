@@ -2,12 +2,19 @@ import _ from 'lodash';
 import './assets/css/index.css'
 import './assets/scss/index.scss'
 
-function createDom(){
+/**
+ * 生产Dom
+ * @param {String} clas 
+ * @param {Array} text 
+ * @return {Element} 生成一个div
+ */
+function createDom(clas,text){
     let dom = document.createElement('div')
-
-    dom.innerHTML = _.join(['hello','world'],' ')
-
+    dom.classList.add(clas)
+    dom.innerHTML = _.join(text,'-')
     return dom
 }
 
-document.body.appendChild(createDom())
+document.body.appendChild(createDom('transition',['hello','transition']))
+document.body.appendChild(createDom('animation',['hello','animation']))
+document.body.appendChild(createDom('play-state',['animation','paly','state']))
