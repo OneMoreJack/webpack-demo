@@ -15,6 +15,8 @@ function createDom(clas,text){
     return dom
 }
 
-document.body.appendChild(createDom('transition',['hello','transition']))
+document.body.appendChild(createDom('rotate',['rotate']))
+document.body.appendChild(createDom('translate',['translate','scale']))
+document.body.appendChild(createDom('skew',['skew']))
 document.body.appendChild(createDom('animation',['hello','animation']))
 document.body.appendChild(createDom('play-state',['animation','paly','state']))

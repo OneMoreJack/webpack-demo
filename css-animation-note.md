@@ -1,5 +1,14 @@
 # CSS 动画  
-> 本文参考 [CSS动画简介-阮一峰](https://www.ruanyifeng.com/blog/2014/02/css_transition_and_animation.html)
+> 本文参考 [CSS动画简介-阮一峰](https://www.ruanyifeng.com/blog/2014/02/css_transition_and_animation.html)  
+#
+<!-- TOC -->
+
+- [CSS 动画](#css-动画)
+    - [CSS Transition](#css-transition)
+    - [CSS Animation](#css-animation)
+    - [transform](#transform)
+
+<!-- /TOC -->
 #
 ## CSS Transition
 + **基本用法**   
@@ -63,7 +72,8 @@ transition的状态变化速度(*timing function*),默认为ease——非匀速
 >3. transition只能定义开始状态和结束状态，不能定义中间状态，也就是说只有两个状态。
 >4. 一条transition规则，只能定义一个属性的变化，不能涉及多个属性。
 
-# 
+ 
+#
 ## CSS Animation
 + 基本用法  
 CSS animation 需指定一个动画周期以及动画效果
@@ -98,7 +108,7 @@ CSS animation 需指定一个动画周期以及动画效果
 >+ backwards —— 让动画回到第一帧的状态
 >+ both —— 根据animation-direction（见后）轮流应用forwards和backwards规则
 
-+ **animation-direction
++ **animation-direction**
 > 动画循环播放时，每次都是从结束状态跳回到起始状态，再开始播放。*animation-direction* 属性，可以改变这种行为   
 可选项： normal (默认)  &nbsp;&nbsp;alternate&nbsp;&nbsp; reverse &nbsp;&nbsp;alternate-reverse
   
@@ -153,3 +163,15 @@ CSS animation 需指定一个动画周期以及动画效果
         }
     }
 ```
+
+#
+## transform
+> transform 方法：
+>+ translate —— 位移    `transform: translate(120px, 50%);`
+>+ scale —— 缩放    `transform: scale(2, 0.5);`
+>+ rotate —— 旋转   `transform: rotate(0.5turn);`
+>+ skew —— 倾斜     `transform: skew(30deg, 20deg);`
+>+ matrix ——           `transform: matrix(1, 2, 3, 4, 5, 6);`
+> 
+
+*效果叠加时，中间用空格隔开* 

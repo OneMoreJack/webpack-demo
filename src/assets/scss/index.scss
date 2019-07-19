@@ -6,6 +6,7 @@ $bg:lightgray;
     text-align: center;
     display: inline-block;
     margin: 20px;
+    background: $bg;
 }
 @mixin active {
     background: gold;
@@ -14,15 +15,14 @@ $bg:lightgray;
 }
 #temp{
     @extend .block;
-    background: $bg;
     &:hover{
         @include active;
         cursor: pointer;
     }
 }
-.transition{
+// ----------------- transform ---------------
+.rotate{
     @extend .block;
-    background: $bg;
     // transition: 1s height , 1s 1s width;
     // transition: 1s cubic-bezier(.83,.97,.05,1.44);
     &:hover{
@@ -34,6 +34,23 @@ $bg:lightgray;
         transition: 1s;
     }
 }
+
+.translate {
+    @extend .block;
+    &:hover{
+        transform: translate(50px,25px) scale(0.5);
+        transition: 1s;
+    }
+}
+.skew{
+    @extend .block;
+    &:hover{
+        transform: skew(20deg,20deg);
+        transition: 1s;
+    }
+}
+
+// ------------------ animation ------------------
 @keyframes rainbow{
     20% {background: lightcoral}
     40% {background: yellow}
@@ -53,7 +70,6 @@ $bg:lightgray;
 }
 .move{
     @extend .block;
-    background: $bg;
     position: relative;
     .move-item {
         position: absolute;
@@ -63,13 +79,13 @@ $bg:lightgray;
         animation: 2s move-round infinite alternate
     }
 }
+
 @keyframes spin {
     from { transform: rotate(0) }
-    to { transform: rotate(180deg)}
+    to { transform: rotate(360deg)}
 }
 .play-state{
     @extend .block;
-    background: $bg;
     animation: 2s spin forwards paused linear infinite alternate;
     &:hover{
         animation-play-state: running;
