@@ -210,4 +210,88 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
             new CleanWebpackPlugin(),
         ]
     }
+```  
+#
+## 图片/字体
+### 图片处理及压缩优化
++ `file-loader`, `image-webpack-loader`
+先用`image-webpack-loader`将图片压缩优化，再用file-loader处理图片
+```javascript
+    module.export = {
+        // ...
+        module:{
+            rules:[
+                {
+                    test: /\.(png|svg|jpg|gif)$/,
+                    use: [
+                        {
+                            loader:'file-loader',
+                        },
+                        {
+                            loader:'image-webpack-loader',
+                            options: {
+                                mozjpeg: {
+                                progressive: true,
+                                quality: 65
+                                },
+                                // optipng.enabled: false will disable optipng
+                                optipng: {
+                                enabled: false,
+                                },
+                                pngquant: {
+                                quality: '65-90',
+                                speed: 4
+                                },
+                                gifsicle: {
+                                interlaced: false,
+                                },
+                                // the webp option will enable WEBP
+                                webp: {
+                                quality: 75
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+
+``` 
+
+### 图片 base64 优化
++ `url-loader`
+url-loader 可以把url地址对应的文件夹打包成 base64 的 DataURL ，提高访问效率
+```javascript
+    module.export = {
+        // ...
+        module:{
+            rules:[
+                {
+                    test: /\.(png|svg|jpg|gif)$/,
+                    use: [
+                        {
+                            loader: 'url-loader',
+                            options: {
+                                limit: 10000,   // 小于10k 的处理成base64
+                            }
+                        },
+                        {
+                            loader:'image-webpack-loader',
+                            // ...
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+
+``` 
+### 字体处理
+字体处理与图片处理大致相同
+```javascript
+    {
+        test:/\.(woff|woff2|eot|ttf|otf)$/,
+        use:['file-loader']
+    }
 ```

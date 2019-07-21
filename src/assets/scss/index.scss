@@ -91,3 +91,12 @@ $bg:lightgray;
         animation-play-state: running;
     }
 }
+ 
+// ------------- demo --------------------
+.img-wrap{
+    width: 400px;
+    height: 200px;
+    margin: auto;
+    // background: url('../img/fox.png');
+    background: url('../img/tiny.jpg')
+} 
