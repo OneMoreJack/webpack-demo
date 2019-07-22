@@ -9,6 +9,8 @@
         - [CSS处理](#css处理)
         - [SCSS/SASS 处理](#scsssass-处理)
     - [压缩](#压缩)
+        - [压缩css](#压缩css)
+        - [压缩 JS](#压缩-js)
     - [CSS,JS 自动注入html](#cssjs-自动注入html)
     - [清除dist](#清除dist)
     - [图片/字体](#图片字体)
@@ -20,6 +22,9 @@
     - [自动编译，热更新](#自动编译热更新)
         - [监控文件变化并自动编译](#监控文件变化并自动编译)
         - [webpack-dev-server和“热更新”](#webpack-dev-server和热更新)
+    - [JS 启用 babel](#js-启用-babel)
+        - [编译ES6](#编译es6)
+        - [避免重复引入（babel 优化）](#避免重复引入babel-优化)
 
 <!-- /TOC -->
 ## 搭建步骤
@@ -127,7 +132,7 @@
 ``` 
 #
 ## 压缩
-+ **压缩css**  
+### 压缩css  
 `optimize-css-assets-webpack-plugin`
 ```javascript
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
@@ -151,7 +156,7 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
         }
     }
 ```  
-+ **压缩 JS**  
+### 压缩 JS 
 `uglifyjs-webpack-plugin` 必须在 mode 为 *'production'* 的情况下使用
 ```javascript
     const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
@@ -254,23 +259,23 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
                             loader:'image-webpack-loader',
                             options: {
                                 mozjpeg: {
-                                progressive: true,
-                                quality: 65
+                                    progressive: true,
+                                    quality: 65
                                 },
                                 // optipng.enabled: false will disable optipng
                                 optipng: {
-                                enabled: false,
+                                    enabled: false,
                                 },
                                 pngquant: {
-                                quality: '65-90',
-                                speed: 4
+                                    quality: '65-90',
+                                    speed: 4
                                 },
                                 gifsicle: {
-                                interlaced: false,
+                                    interlaced: false,
                                 },
                                 // the webp option will enable WEBP
                                 webp: {
-                                quality: 75
+                                    quality: 75
                                 }
                             }
                         }
@@ -403,6 +408,89 @@ url-loader 可以把url地址对应的文件夹打包成 base64 的 DataURL ，�
         ]
     }
 ```
+
+#
+## JS 启用 babel
+### 编译ES6 
++ `babel-loader  @babel/core  @babel/preset-env`
+两种方式：  
+1. *babel-loader* 配置 options.presets
+```javascript
+module.exports = {
+    // ...
+    module:{
+        rules:[
+            {
+                test:/\.js$/,
+                exclude:/(node_modules)/,
+                use:[
+                    {
+                        loader:'babel-loader',
+                        options:{
+                            "presets": [
+                                [
+                                    "@babel/preset-env",
+                                    {
+                                        "useBuiltIns": "entry",
+                                        "corejs": "3.1.4"   // 需指定corejs版本，不然默认2.x
+                                    }
+                                ]
+                            ],
+                            cacheDirectory:true
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}
+```
+2. 配置*.babelrc* 文件
+```javascript
+    {
+        "presets": [
+            [
+                "@babel/preset-env",
+                {
+                    "targets": "> 0.25%, not dead"
+                }
+            ]
+        ]
+    }
+```
+### 避免重复引入（babel 优化）
+` @babel/plugin-transform-runtime @babel/runtime`
+[transform-runtime](https://www.babeljs.cn/docs/babel-plugin-transform-runtime)
+
+>`npm install --save-dev @babel/plugin-transform-runtime`  
+>`npm install --save @babel/runtime`
+
+```javascript
+    // .babelrc
+    {
+        "presets": [
+            [
+                "@babel/preset-env",
+                {
+                    "targets": "> 0.25%, not dead"
+                }
+            ]
+        ],
+        "plugins": [
+            [
+                "@babel/plugin-transform-runtime",
+                {
+                    "absoluteRuntime": false,
+                    "corejs": false,
+                    "helpers": true,
+                    "regenerator": true,
+                    "useESModules": false
+                }
+            ]
+        ]
+    }
+```
+
 
 
 

@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import './assets/css/index.css'
 import './assets/scss/index.scss'
+import { getList } from './api/index'
 
 /**
  * 生产Dom
@@ -22,3 +23,29 @@ document.body.appendChild(createDom('animation',['hello','animation']))
 document.body.appendChild(createDom('play-state',['animation','paly','state']))
 document.body.appendChild(createDom('img-wrap'))
 console.log(2)
+
+// getList()
+// .then(res => {
+//     console.log(res)
+// })
+// .catch(err => {
+//     console.error(err)
+// })
+
+class Demo {
+    show(){
+        console.log('this.Age',this.Age)
+    }
+    get Age(){
+        return this._age
+    }
+    set Age(val){
+        this._age = val + 1
+    }
+}
+
+let d = new Demo();
+d.Age = 17;
+d.show()
+
+

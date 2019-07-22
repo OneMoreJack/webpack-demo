@@ -10,19 +10,21 @@ module.exports = {
         rules:[
             {
                 test:/\.js$/,
+                exclude:/(node_modules)/,
                 use:[
                     {
                         loader:'babel-loader',
                         options:{
-                            "presets": [
-                                [
-                                    "@babel/preset-env",
-                                    {
-                                        "useBuiltIns": "entry",
-                                        "corejs": "3.1.4"   // 需指定corejs版本，不然默认2.x
-                                    }
-                                ]
-                            ]
+                            // "presets": [
+                            //     [
+                            //         "@babel/preset-env",
+                            //         {
+                            //             "useBuiltIns": "entry",
+                            //             "corejs": "3.1.4"   // 需指定corejs版本，不然默认2.x
+                            //         }
+                            //     ]
+                            // ],
+                            cacheDirectory:true
                         }
                     }
                 ]

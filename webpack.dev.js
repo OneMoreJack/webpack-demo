@@ -23,11 +23,11 @@ let devConfig = {
             errors:true
         },
         publicPath:'/',
-        proxy:{ // 服务器代理
+        proxy:{     // 服务器代理
             "/api":{
-                target:"http://192.168.3.172",
+                target:"http://192.168.0.102:8080",
                 pathRewrite:{
-                    "^/api" :"/hello/api"
+                    "^/api" :"/mockjsdata/5/api"
                 }
                 // /api/getUser => http://192.168.3.172/hello/api/getUser
             }
