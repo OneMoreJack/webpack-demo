@@ -1,4 +1,22 @@
 # webpack-demo
+<!-- TOC -->
+
+- [webpack-demo](#webpack-demo)
+    - [搭建步骤](#搭建步骤)
+        - [1. 本地安装webpack](#1-本地安装webpack)
+        - [2. 安装lodash](#2-安装lodash)
+    - [样式处理](#样式处理)
+        - [CSS处理](#css处理)
+        - [SCSS/SASS 处理](#scsssass-处理)
+    - [压缩](#压缩)
+    - [CSS,JS 自动注入html](#cssjs-自动注入html)
+    - [清除dist](#清除dist)
+    - [图片/字体](#图片字体)
+        - [图片处理及压缩优化](#图片处理及压缩优化)
+        - [图片 base64 优化](#图片-base64-优化)
+        - [字体处理](#字体处理)
+
+<!-- /TOC -->
 ## 搭建步骤
 ### 1. 本地安装webpack  
 >`npm install --save-dev webpack`  
