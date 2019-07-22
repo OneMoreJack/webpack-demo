@@ -16,6 +16,10 @@
         - [图片 base64 优化](#图片-base64-优化)
         - [字体处理](#字体处理)
     - [webpack合并](#webpack合并)
+    - [启用 JS Source Map](#启用-js-source-map)
+    - [自动编译，热更新](#自动编译热更新)
+        - [监控文件变化并自动编译](#监控文件变化并自动编译)
+        - [webpack-dev-server和“热更新”](#webpack-dev-server和热更新)
 
 <!-- /TOC -->
 ## 搭建步骤
@@ -333,3 +337,73 @@ url-loader 可以把url地址对应的文件夹打包成 base64 的 DataURL ，�
         // ...
     })
 ```
+#
+## 启用 JS Source Map
+开发阶段启用source Map 便于开发调试
+```javascript
+    // webpack.dev.js
+    module.exports = {
+        // ...
+        devtool:'inline-source-map'
+    }
+```
+
+#
+## 自动编译，热更新
+### 监控文件变化并自动编译
+`npx webpack --watch`
+```json
+    // package.json
+    {
+        "scripts": {
+            "build": "npx webpack --config webpack.prod.js",
+            "start":"npx webpack --open --watch --config webpack.dev.js"
+        }
+    }
+```
+
+### webpack-dev-server和“热更新”
+>`webpack-dev-server`提供一个简单的web服务器，并且可以实时重新加载（*live reloading*）
+```javascript
+    // webpack.dev.js
+    module.exports = {
+        // ...
+        devServer:{
+            clientLogLevel:'warning',
+            hot:true,
+            contentBase:path.resolve(__dirname,'dist'),
+            compress:true,
+            host:'localhost',
+            port:'8094',
+            open:true,
+            overlay:{
+                warning:true,
+                errors:true
+            },
+            publicPath:'/',
+            proxy:{ // 服务器代理
+                "/api":{
+                    target:"http://192.168.3.172",
+                    pathRewrite:{
+                        "^/api" :"/hello/api"
+                    }
+                    // /api/getUser => http://192.168.3.172/hello/api/getUser
+                }
+            },
+            quiet:true,
+            watchOptions:{
+                poll:true,      // 轮询
+                aggregateTimeout: 600,      // 延迟
+                ignored:/node_modules/
+            }
+        },
+        plugins:[
+            new webpack.NamedModulesPlugin(),
+            new webpack.HotModuleReplacementPlugin()   
+        ]
+    }
+```
+
+
+
+

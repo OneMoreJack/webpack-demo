@@ -57,7 +57,7 @@ let prodConfig = {
             new UglifyJsPlugin({                // 压缩js
                 cache: true,
                 parallel:true,
-                sourceMap:true
+                sourceMap:false
             }),
         ]
     }

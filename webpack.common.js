@@ -3,7 +3,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = {
-    entry:'./src/index.js', // 入口
+    entry:{         // 入口
+        app:'./src/index.js'
+    },
     module:{
         rules:[
             {
@@ -79,9 +81,4 @@ module.exports = {
         }),
         new CleanWebpackPlugin()        // 清除构建目录
     ],
-    // optimization:{
-    //     minimizer:[
-           
-    //     ]
-    // }
 }
