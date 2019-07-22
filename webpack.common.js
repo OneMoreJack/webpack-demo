@@ -6,6 +6,14 @@ module.exports = {
     entry:{         // 入口
         app:'./src/index.js'
     },
+    resolve: {
+        resolve: {
+            alias: {
+                '@':path.resolve(__dirname,'src/')
+            },
+            extensions:['.js','.vue','.json'],  // 可省略
+        }
+    },
     module:{
         rules:[
             {

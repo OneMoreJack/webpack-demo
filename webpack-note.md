@@ -26,6 +26,9 @@
         - [编译ES6](#编译es6)
         - [避免重复引入（babel 优化）](#避免重复引入babel-优化)
     - [Eslint 校验配置](#eslint-校验配置)
+    - [webpack解析后缀和别名](#webpack解析后缀和别名)
+        - [解析 （resolve）](#解析-resolve)
+    - [外部扩展 (externals)](#外部扩展-externals)
 
 <!-- /TOC -->
 ## 搭建步骤
@@ -518,4 +521,39 @@ module.exports = {
             'genetator-star-spacing':'off',
         }
     }
+```
+
+#
+## webpack解析后缀和别名
+### 解析 （resolve）
+```javascript
+    module.exports = {
+        //...
+        resolve: {
+            alias: {        // 设置别名
+                '@':path.resolve(__dirname,'src/')
+            },
+            extensions:['.js','.vue','.json'],  // 可省略
+        }
+    };
+```
+#
+## 外部扩展 (externals)
+>externals 配置选项提供了「从输出的 bundle 中排除依赖」的方法。防止将某些 import 的包(package)打包到 bundle 中，而是在运行时(runtime)再去从外部获取这些扩展依赖(external dependencies)。
+
+例如从CDN引入jquery
+```html
+    <script
+        src="https://code.jquery.com/jquery-3.1.0.js"
+        integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk="
+        crossorigin="anonymous">
+    </script>
+```
+```javascript
+    module.exports = {
+        //...
+        externals: {
+            jquery: 'jQuery'
+        }
+    };
 ```
