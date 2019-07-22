@@ -25,9 +25,11 @@ let devConfig = {
         publicPath:'/',
         proxy:{     // 服务器代理
             "/api":{
-                target:"http://192.168.0.102:8080",
+                target:"https://www.zhihu.com",
+                changeOrigin:true,
+                secure:false,
                 pathRewrite:{
-                    "^/api" :"/mockjsdata/5/api"
+                    // "^/api" :"/api"
                 }
                 // /api/getUser => http://192.168.3.172/hello/api/getUser
             }

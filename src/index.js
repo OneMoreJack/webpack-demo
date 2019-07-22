@@ -24,13 +24,13 @@ document.body.appendChild(createDom('play-state',['animation','paly','state']))
 document.body.appendChild(createDom('img-wrap'))
 console.log(2)
 
-// getList()
-// .then(res => {
-//     console.log(res)
-// })
-// .catch(err => {
-//     console.error(err)
-// })
+getList()
+.then(res => {
+    console.log(res)
+})
+.catch(err => {
+    console.error(err)
+})
 
 class Demo {
     show(){
@@ -47,5 +47,3 @@ class Demo {
 let d = new Demo();
 d.Age = 17;
 d.show()
-
-

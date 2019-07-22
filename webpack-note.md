@@ -25,6 +25,7 @@
     - [JS 启用 babel](#js-启用-babel)
         - [编译ES6](#编译es6)
         - [避免重复引入（babel 优化）](#避免重复引入babel-优化)
+    - [Eslint 校验配置](#eslint-校验配置)
 
 <!-- /TOC -->
 ## 搭建步骤
@@ -412,7 +413,7 @@ url-loader 可以把url地址对应的文件夹打包成 base64 的 DataURL ，�
 #
 ## JS 启用 babel
 ### 编译ES6 
-+ `babel-loader  @babel/core  @babel/preset-env`
++ `babel-loader  @babel/core  @babel/preset-env`  
 两种方式：  
 1. *babel-loader* 配置 options.presets
 ```javascript
@@ -459,11 +460,11 @@ module.exports = {
     }
 ```
 ### 避免重复引入（babel 优化）
-` @babel/plugin-transform-runtime @babel/runtime`
-[transform-runtime](https://www.babeljs.cn/docs/babel-plugin-transform-runtime)
+` @babel/plugin-transform-runtime @babel/runtime`    
+[参考transform-runtime](https://www.babeljs.cn/docs/babel-plugin-transform-runtime)
 
->`npm install --save-dev @babel/plugin-transform-runtime`  
->`npm install --save @babel/runtime`
+>       npm install --save-dev @babel/plugin-transform-runtime 
+>       npm install --save @babel/runtime
 
 ```javascript
     // .babelrc
@@ -491,7 +492,12 @@ module.exports = {
     }
 ```
 
+#
+## Eslint 校验配置
++ **安装**
+    npm i eslint -D
+    npm i eslint-loader -D
 
+    npm i -D babel-eslint standard  // 校验规则
 
-
-
++ **使用**
