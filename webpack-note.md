@@ -1,7 +1,7 @@
-# webpack-demo
+# webpack-note
 <!-- TOC -->
 
-- [webpack-demo](#webpack-demo)
+- [webpack-note](#webpack-note)
     - [搭建步骤](#搭建步骤)
         - [1. 本地安装webpack](#1-本地安装webpack)
         - [2. 安装lodash](#2-安装lodash)
@@ -15,6 +15,7 @@
         - [图片处理及压缩优化](#图片处理及压缩优化)
         - [图片 base64 优化](#图片-base64-优化)
         - [字体处理](#字体处理)
+    - [webpack合并](#webpack合并)
 
 <!-- /TOC -->
 ## 搭建步骤
@@ -147,7 +148,7 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
     }
 ```  
 + **压缩 JS**  
-`uglifyjs-webpack-plugin` 必须在 node 为 *'production'* 的情况下使用
+`uglifyjs-webpack-plugin` 必须在 mode 为 *'production'* 的情况下使用
 ```javascript
     const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
@@ -312,4 +313,23 @@ url-loader 可以把url地址对应的文件夹打包成 base64 的 DataURL ，�
         test:/\.(woff|woff2|eot|ttf|otf)$/,
         use:['file-loader']
     }
+```
+
+#
+## webpack合并
+将webpack配置分离成三个文件： *webpack.common.js , webpack.dev.js , webpack.prod.js* 。需要使用 `webpack-merge` 将配置合并
+
+```javascript
+    // webpack.common.js
+    module.exports = {
+        ...
+    }
+
+    // webpack.dev.js, webpack.prod.js
+    const common = require('./webpack.common.js')
+    const merge = require('webpack-merge')
+    
+    module.exports = merge(common,{
+        // ...
+    })
 ```

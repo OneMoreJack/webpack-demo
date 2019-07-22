@@ -1,7 +1,7 @@
 const path = require('path')
-
-module.exports = {
-    entry:'./src/index.js', // 入口
+const merge = require('webpack-merge')
+const common = require('./webpack.common')
+let devConfig = {
     mode:'development', // 模式
     output:{                // 出口
         filename:'main.js',
@@ -39,3 +39,5 @@ module.exports = {
         ]
     }
 }
+
+module.exports = merge(common,devConfig)
