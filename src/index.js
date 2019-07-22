@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import './assets/css/index.css'
 import './assets/scss/index.scss'
-import { getList } from './api/index'
+import { getCountryList } from './api/demo'
 
 /**
  * 生产Dom
@@ -22,11 +22,10 @@ document.body.appendChild(createDom('skew',['skew']))
 document.body.appendChild(createDom('animation',['hello','animation']))
 document.body.appendChild(createDom('play-state',['animation','paly','state']))
 document.body.appendChild(createDom('img-wrap'))
-console.log(2)
 
-getList()
+getCountryList()
 .then(res => {
-    console.log(res)
+    console.log('CountryList',res)
 })
 .catch(err => {
     console.error(err)

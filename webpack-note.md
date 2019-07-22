@@ -498,6 +498,24 @@ module.exports = {
     npm i eslint -D
     npm i eslint-loader -D
 
-    npm i -D babel-eslint standard  // 校验规则
-
 + **使用**
+```javascript
+    // .eslintrc.js 
+    module.exports = {
+        root:true,
+        parserOptions:{
+            parser:'babel-eslint',
+            sourceType:'module'     // 设置souceType为 module,否则无法正常使用import 语句
+        },
+        env:{
+            browser:true,
+            es6:true
+        },
+        globals:{
+            NODE_ENV:false
+        },
+        rules:{
+            'genetator-star-spacing':'off',
+        }
+    }
+```
