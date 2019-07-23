@@ -7,12 +7,10 @@ module.exports = {
         app:'./src/index.js'
     },
     resolve: {
-        resolve: {
-            alias: {
-                '@':path.resolve(__dirname,'src/')
-            },
-            extensions:['.js','.vue','.json'],  // 可省略
-        }
+        alias: {
+            '@':path.resolve(__dirname,'src/')
+        },
+        extensions:['.js','.vue','.json'],  // 可省略
     },
     module:{
         rules:[
