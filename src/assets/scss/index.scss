@@ -94,9 +94,20 @@ $bg:lightgray;
  
 // ------------- demo --------------------
 .img-wrap{
-    width: 400px;
-    height: 200px;
+    width: 800px;
+    height: 400px;
     margin: auto;
     // background: url('../img/fox.png');
     background: url('../img/tiny.jpg')
 } 
+
+@media screen and (min-width:600px) and (max-width:800px){
+    .img-wrap{
+        width: 100%;
+    }
+}
+@media screen and (max-width:600px) {
+    .img-wrap{
+        display: none;
+    }
+}
