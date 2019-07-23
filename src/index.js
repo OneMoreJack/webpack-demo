@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import './assets/css/index.css'
 import './assets/scss/index.scss'
-import { getCountryList } from '@/api/demo'
+import { getCountryList } from 'api/demo'
 
 /**
  * 生产Dom

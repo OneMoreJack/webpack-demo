@@ -3,11 +3,14 @@ import axios from 'axios'
 // 环境的切换
 let [AXI, baseURL] = ['', ''];
 switch (process.env.NODE_ENV) {
-    case 'production':  // 生产环境请求地址
-        baseURL = '...'
+    case 'production':  
+        baseURL = '...'     // 生产环境请求地址
+        break;
+    case 'development':  
+        baseURL = '/api'
         break;
     default:    
-        baseURL = '/api'
+        baseURL = '...'     // 其他环境请求地址
 }
 
 AXI = axios.create({

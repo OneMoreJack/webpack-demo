@@ -2,15 +2,22 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
+function resolve (dir) {
+    return path.join(__dirname, dir)
+}
+
 module.exports = {
     entry:{         // 入口
         app:'./src/index.js'
     },
     resolve: {
         alias: {
-            '@':path.resolve(__dirname,'src/')
+            '@': resolve('src'),
+            'api': resolve('src/api'),
+            'components':resolve('src/components')
         },
         extensions:['.js','.vue','.json'],  // 可省略
+        modules:[resolve('node_modules')]
     },
     module:{
         rules:[

@@ -5,12 +5,13 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const merge = require('webpack-merge')
 const common = require('./webpack.common')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-let prodConfig = {
+let preConfig = {
     mode:'production', 
     output:{                
         filename:'main.[hash].js',  // 添加hash
-        path:path.resolve(__dirname,'dist')
+        path:path.resolve(__dirname,'pre')
     },
     module:{
         rules:[
@@ -29,7 +30,7 @@ let prodConfig = {
                         options:{
                             ident:'postcss',
                             sourceMap:true,
-                            plugins: (loader) => [
+                            plugins: () => [
                                 require('autoprefixer')
                             ]
                         }
@@ -45,12 +46,16 @@ let prodConfig = {
         ]
     },
     plugins: [
+        new BundleAnalyzerPlugin({
+            openAnalyzer:false,
+            analyzerMode:'static'
+        }),
         new MiniCssExtractPlugin({      //  抽离css
             filename: '[name].[hash].css',
             chunkFilename: '[id].[hash].css',
         }),
         new webpack.DefinePlugin({
-            'process.env.NODE_ENV': JSON.stringify('production')
+            'process.env.NODE_ENV': JSON.stringify('test')
         })
     ],
     optimization:{
@@ -65,4 +70,4 @@ let prodConfig = {
     }
 }
 
-module.exports = merge(common,prodConfig)
+module.exports = merge(common,preConfig)

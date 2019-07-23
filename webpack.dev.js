@@ -29,9 +29,8 @@ let devConfig = {
                 changeOrigin:true,
                 secure:false,
                 pathRewrite:{
-                    // "^/api" :"/api"
+                    // "^/api" :""
                 }
-                // /api/getUser => http://192.168.3.172/hello/api/getUser
             }
         },
         quiet:true,
