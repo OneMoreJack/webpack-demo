@@ -9,7 +9,7 @@ let devConfig = {
         filename:'main.js',
         path:path.resolve(__dirname,'dist')
     },
-    devtool:'inline-source-map',
+    devtool:'eval-source-map',
     devServer:{
         clientLogLevel:'warning',
         hot:true,

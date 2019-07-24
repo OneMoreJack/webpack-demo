@@ -353,9 +353,10 @@ url-loader 可以把url地址对应的文件夹打包成 base64 的 DataURL ，�
     // webpack.dev.js
     module.exports = {
         // ...
-        devtool:'inline-source-map'
+        devtool:'eval-source-map'
     }
 ```
+>生产环境不建议启用Source Map, 对于开发环境，最佳模式为 `eval-source-map` , 具体参考[webpack-devtool](https://www.webpackjs.com/configuration/devtool/#devtool)
 
 #
 ## 自动编译，热更新
