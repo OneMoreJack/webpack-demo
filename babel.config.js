@@ -18,17 +18,11 @@ const plugins = [
         }
     ]
 ];
-const overrides = [
-    {
-       exclude: /node_modules/
-    }
-] 
 
 module.exports = function (api) {
     api.cache(true);
     return {
       presets,
-      plugins,
-      overrides
+      plugins
     };
 }

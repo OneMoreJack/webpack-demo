@@ -6,9 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "pre": "npx webpack --config webpack.config.js",
-    "build": "npx webpack --config webpack.prod.js",
+    "build": "npx webpack --progress --config webpack.prod.js",
     "start": "npx webpack-dev-server --progress --config webpack.dev.js",
-    "build-test":"npx webpack --config webpack.test.js"
+    "build-test":"npx webpack --progress --config webpack.test.js"
   },
   "dependencies": {
     "@babel/runtime": "^7.5.5",
