@@ -7,16 +7,7 @@ const presets = [
     ]
 ];
 const plugins = [
-    [
-        "@babel/plugin-transform-runtime",
-        {
-            "absoluteRuntime": false,
-            "corejs": false,
-            "helpers": true,
-            "regenerator": true,
-            "useESModules": false
-        }
-    ]
+    "@babel/plugin-transform-runtime"
 ];
 
 module.exports = function (api) {

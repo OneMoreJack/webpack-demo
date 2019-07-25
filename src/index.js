@@ -2,6 +2,7 @@ import _ from 'lodash';
 import './assets/css/index.css'
 import './assets/scss/index.scss'
 import { getCountryList } from 'api/demo'
+import Util from '@/utils/class-module.js'
 
 /**
  * 生产Dom
@@ -46,3 +47,11 @@ class Demo {
 let d = new Demo();
 d.Age = 17;
 d.show()
+// async function line(){
+//     const map = await getCountryList()
+//         .catch(err => console.error(err))
+//     console.log(map)
+//     Util.moreThan5(4)
+//     Util.moreThan5(6)
+// }
+// line()
